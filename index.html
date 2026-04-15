@@ -759,36 +759,7 @@
     transform: translate(-50%, -50%);
     transition: left 0.1s, top 0.1s;
   }
-
-  /* EDIT HINTS */
-  [data-editable] {
-    position: relative;
-    outline: none;
-  }
-
-  [data-editable]:focus {
-    outline: 1px dashed rgba(167,139,250,0.4);
-    outline-offset: 4px;
-    border-radius: 2px;
-  }
-
-  .edit-hint {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    background: var(--bg3);
-    border: 0.5px solid var(--border);
-    border-radius: 8px;
-    padding: 0.6rem 1rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    z-index: 200;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .edit-hint.show { opacity: 1; }
+  
 
   /* RESPONSIVE */
   @media (max-width: 720px) {
@@ -807,7 +778,7 @@
 <body>
 
 <div class="cursor-glow" id="cursorGlow"></div>
-<div class="edit-hint" id="editHint">Click any text to edit it</div>
+<div class="edit-hint" id="editHint">Click any text to edit it</div>-->
 
 <!-- NAV -->
 <nav>
