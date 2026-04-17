@@ -121,7 +121,7 @@
     max-width: 100%;
     display: flex;
     align-items: center;
-    padding: 0 3rem 5rem;
+    padding: 0 3rem;
     position: relative;
   }
 
@@ -219,16 +219,16 @@
     content: '';
     position: absolute;
     inset: -1px;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    border-radius: 10px;
     border: 1px solid var(--border);
     pointer-events: none;
     z-index: 2;
   }
 
   .hero-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    width: 210px;
+    height: 280px;
+    border-radius: 10px;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -237,9 +237,9 @@
   }
 
   .photo-placeholder {
-    width: 200px;
-    height: 200px;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    width: 210px;
+    height: 280px;
+    border-radius: 10px;
     background: var(--bg3);
     border: 1px solid var(--border);
     display: flex;
@@ -757,76 +757,6 @@
     transform: translateY(0);
   }
 
-  /* LAYOUT SWITCHER */
-  .layout-switcher {
-    position: absolute;
-    bottom: 1.75rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.35rem;
-    background: rgba(10,10,15,0.88);
-    backdrop-filter: blur(14px);
-    border: 0.5px solid var(--border);
-    border-radius: 50px;
-    padding: 0.35rem;
-    z-index: 20;
-    white-space: nowrap;
-  }
-
-  .layout-btn {
-    padding: 0.32rem 0.9rem;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.05em;
-    border: none;
-    background: transparent;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.18s;
-  }
-  .layout-btn:hover { color: var(--text); }
-  .layout-btn.active { background: var(--accent); color: #0a0a0f; }
-
-  /* LAYOUT 2: Centered stack */
-  #hero.layout-2 .hero-inner {
-    grid-template-columns: 1fr;
-    text-align: center;
-    justify-items: center;
-  }
-  #hero.layout-2 #heroPhotoDesktop { order: -1; width: 240px; height: 240px; }
-  #hero.layout-2 .hero-photo { width: 240px; height: 240px; border-radius: 50%; }
-  #hero.layout-2 .hero-photo-wrap::before { border-radius: 50%; }
-  #hero.layout-2 .hero-desc { text-align: center; }
-  #hero.layout-2 .hero-links { justify-content: center; }
-
-  /* LAYOUT 3: Large left photo */
-  #hero.layout-3 .hero-inner { grid-template-columns: 300px 1fr; }
-  #hero.layout-3 #heroPhotoDesktop { order: -1; width: 300px; height: 380px; }
-  #hero.layout-3 .hero-photo { width: 300px; height: 380px; border-radius: 16px 60px 16px 60px; }
-  #hero.layout-3 .hero-photo-wrap::before { border-radius: 16px 60px 16px 60px; }
-
-  /* LAYOUT 4: Split screen */
-  #hero.layout-4 { padding: 0; overflow: hidden; align-items: stretch; }
-  #hero.layout-4 .hero-inner {
-    max-width: 100%;
-    margin: 0;
-    grid-template-columns: 1fr 44%;
-    gap: 0;
-    align-items: stretch;
-    min-height: 92vh;
-  }
-  #hero.layout-4 .hero-inner > div:first-child {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem 3rem 4rem 5rem;
-  }
-  #hero.layout-4 #heroPhotoDesktop { position: relative; overflow: hidden; width: auto; height: auto; }
-  #hero.layout-4 .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 0; }
-  #hero.layout-4 .hero-photo-wrap::before { display: none; }
-
   /* CURSOR GLOW */
   .cursor-glow {
     position: fixed;
@@ -841,52 +771,34 @@
   }
   
 
- /* MOBILE PHOTO STRIP */
-  .hero-photo-mobile {
-    display: none;
-  }
+  /* MOBILE PHOTO STRIP — hidden, desktop photo reorders instead */
+  .hero-photo-mobile { display: none; }
 
   /* RESPONSIVE */
   @media (max-width: 720px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1rem; }
-    .hero-inner { grid-template-columns: 1fr; }
-    #heroPhotoDesktop { display: none; }
-    .hero-photo-mobile {
+    #hero { padding: 2.5rem 1.5rem 4rem; min-height: auto; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+    #heroPhotoDesktop {
       display: flex;
       justify-content: center;
-      padding: 0 1.5rem 3rem;
-      position: relative;
-      z-index: 1;
+      margin-top: 2rem;
     }
-    .hero-photo-mobile .hero-photo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      object-position: center top;
+    #heroPhotoDesktop .hero-photo {
+      width: 160px;
+      height: 210px;
+    }
+    #heroPhotoDesktop::before {
+      border-radius: 10px;
     }
     .bio-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     h1 { font-size: 2.5rem; }
     section { padding: 4rem 1.5rem; }
-    #hero { padding: 0 1.5rem; min-height: auto; padding-bottom: 2rem; }
-  }
-    .hero-photo-wrap {
-      display: flex;
-      justify-content: center;
-      order: -1;
-      margin-bottom: 1.5rem;
-    }
-    .photo-placeholder, .hero-photo-wrap img {
-      width: 140px;
-      height: 140px;
-    }
-    .hero-links { justify-content: center; }
-    .bio-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-    h1 { font-size: 2.5rem; }
-    section { padding: 4rem 1.5rem; }
-    #hero { padding: 2rem 1.5rem; min-height: auto; }
   }
 </style>
 </head>
@@ -926,12 +838,6 @@
     <div class="hero-photo-wrap" id="heroPhotoDesktop">
       <img src="images/26-1402-1608-ESmal.jpeg" class="hero-photo" alt="Dr. Ashley Nixon">
     </div>
-  </div>
-  <div class="layout-switcher">
-    <button class="layout-btn active" data-layout="1">① Current</button>
-    <button class="layout-btn" data-layout="2">② Centered</button>
-    <button class="layout-btn" data-layout="3">③ Large Left</button>
-    <button class="layout-btn" data-layout="4">④ Split</button>
   </div>
 </section>
 
@@ -1345,18 +1251,6 @@
         hintShown = true;
         setTimeout(() => hint.classList.remove('show'), 3000);
       }
-    });
-  });
-
-  // Layout switcher
-  document.querySelectorAll('.layout-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.layout-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const hero = document.getElementById('hero');
-      ['layout-2','layout-3','layout-4'].forEach(c => hero.classList.remove(c));
-      const layout = btn.dataset.layout;
-      if (layout !== '1') hero.classList.add('layout-' + layout);
     });
   });
 
