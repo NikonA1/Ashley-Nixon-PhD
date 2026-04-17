@@ -771,14 +771,36 @@
   }
   
 
+ /* MOBILE PHOTO STRIP */
+  .hero-photo-mobile {
+    display: none;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 720px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1rem; }
-    .hero-inner {
-      grid-template-columns: 1fr;
-      text-align: center;
+    .hero-inner { grid-template-columns: 1fr; }
+    #heroPhotoDesktop { display: none; }
+    .hero-photo-mobile {
+      display: flex;
+      justify-content: center;
+      padding: 0 1.5rem 3rem;
+      position: relative;
+      z-index: 1;
     }
+    .hero-photo-mobile .hero-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      object-position: center top;
+    }
+    .bio-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 2.5rem; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 0 1.5rem; min-height: auto; padding-bottom: 2rem; }
+  }
     .hero-photo-wrap {
       display: flex;
       justify-content: center;
@@ -831,12 +853,16 @@
        <!--  <a href="cv.pdf" class="btn btn-ghost">CV ↗</a>-->
       </div>
     </div>
-    <div class="hero-photo-wrap">
+    <div class="hero-photo-wrap" id="heroPhotoDesktop">
       <img src="images/26-1402-1608-ESmal.jpeg" class="hero-photo" alt="Dr. Ashley Nixon">
     </div>
-    
   </div>
 </section>
+
+<!-- MOBILE PHOTO — shows between hero and about on small screens -->
+<div class="hero-photo-mobile">
+  <img src="images/26-1402-1608-ESmal.jpeg" class="hero-photo" alt="Dr. Ashley Nixon">
+</div>
 
 <!-- ABOUT -->
 <section id="about">
