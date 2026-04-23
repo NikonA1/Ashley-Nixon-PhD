@@ -297,7 +297,7 @@
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 4rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   .bio-text p {
@@ -307,6 +307,19 @@
   }
 
   .bio-text p:first-child { color: var(--text); }
+
+  .bio-photo {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .bio-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
 
   .bio-stats {
     display: flex;
@@ -795,7 +808,7 @@
       <p>My research focuses on how environmental factors, such as light and temperature, influence mental and physical health. I aim to advance interdisciplinary research that investigates how built and natural environments can promote human health, well‑being, and restorative sleep.</p>
       <p>Outside the lab I participate in the <a href="https://www.researchsleep.ca" target="_blank" rel="noopener">Canadian Sleep Research Consortium</a>, where I advocate and support initiatives to help educate Canadians on the importance of the timing of light for sleep and health.</p>
     </div>
-    <div class="bio-stats">
+    <!-- <div class="bio-stats">
       <div class="stat-card">
         <div class="stat-number">39</div>
         <div class="stat-label">publications</div>
@@ -812,6 +825,9 @@
         <div class="stat-number"> >5 </div>
         <div class="stat-label">countries collaborated</div>
       </div>
+    </div> -->
+    <div class="bio-photo">
+      <img src="images/26-1402-1608-ESmal.jpeg" alt="Dr. Ashley Nixon" class="bio-photo-img">
     </div>
   </div>
 </section>
