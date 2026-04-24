@@ -624,6 +624,32 @@
     align-items: start;
   }
 
+  .contact-photo-img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+    border: 0.5px solid var(--border);
+  }
+
+  .contact-photo-caption {
+    margin-top: 0.9rem;
+  }
+
+  .contact-photo-caption p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    line-height: 1.6;
+  }
+
+  .contact-photo-caption a {
+    color: var(--accent2);
+    font-family: 'Karla', sans-serif;
+  }
+
+  .contact-photo-caption a:hover { color: var(--accent); }
+
   .contact-info p {
     color: var(--muted);
     margin-bottom: 1.5rem;
@@ -1173,6 +1199,13 @@
     <h2>Let's <em>connect</em></h2>
   </div>
   <div class="contact-grid reveal">
+    <div class="contact-photo-col">
+      <img src="images/photography.jpg" alt="Photography by Dr. Ashley Nixon" class="contact-photo-img">
+      <div class="contact-photo-caption">
+        <span class="outreach-badge">Beyond the lab</span>
+        <p>When I'm not in the lab, I'm chasing light with a camera. <a href="YOUR_PORTFOLIO_URL" target="_blank" rel="noopener">View my photography ↗</a></p>
+      </div>
+    </div>
     <div class="contact-info">
       <p>I am open to research collaborations, graduate student supervision, and industry partnerships in sleep science and environmental psychology. Feel free to reach out via email, connect on LinkedIn, or follow my research on Google Scholar.</p>
       <div class="contact-links">
@@ -1180,7 +1213,7 @@
           <svg class="contact-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
           <span>anixon@uottawa.ca</span>
         </a>
-         <a href="https://www.linkedin.com/in/ashley-nixon00/" class="contact-link">
+        <a href="https://www.linkedin.com/in/ashley-nixon00/" class="contact-link">
           <svg class="contact-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"> <rect x="2" y="2" width="20" height="20" rx="2"/>  <line x1="8" y1="11" x2="8" y2="16"/>  <line x1="8" y1="8" x2="8" y2="8"/>  <path d="M12 16v-3a2 2 0 0 1 4 0v3"/></svg>
           <span>LinkedIn</span>
         </a>
@@ -1194,21 +1227,6 @@
         </a>
       </div>
     </div>
-   <!--  <div class="contact-form">
-      <div class="form-group">
-        <label class="form-label">Name</label>
-        <input class="form-input" type="text" placeholder="Your name">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email</label>
-        <input class="form-input" type="email" placeholder="you@example.com">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Message</label>
-        <textarea class="form-textarea" placeholder="What's on your mind?"></textarea>
-      </div>
-      <button class="btn btn-primary" style="align-self:flex-start;">Send message</button>
-    </div>-->
   </div>
 </section>
 
