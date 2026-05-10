@@ -1314,5 +1314,85 @@
     });
   });
 </script>
+
+<script>
+  if ('modelContext' in navigator) {
+    navigator.modelContext.registerTool({
+      name: 'get_researcher_profile',
+      description: "Get Dr. Ashley Nixon's professional profile: role, institutions, research focus, and contact links.",
+      inputSchema: { type: 'object', properties: {} },
+      async execute() {
+        return { content: [{ type: 'text', text: JSON.stringify({
+          name: "Dr. Ashley Nixon",
+          title: "Research Officer",
+          institutions: [
+            "National Research Council of Canada",
+            "University of Ottawa (Adjunct Professor, School of Psychology)"
+          ],
+          research_focus: ["Sleep", "Circadian rhythms", "Light and health", "Built environments", "Daylight saving time", "Environmental psychology"],
+          email: "anixon@uottawa.ca",
+          links: {
+            google_scholar: "https://scholar.google.ca/citations?user=W-RTUJoAAAAJ&hl=en",
+            linkedin: "https://www.linkedin.com/in/ashley-nixon00/",
+            university_profile: "https://uniweb.uottawa.ca/view/profile/members/6697?lang=en",
+            sleep_consortium: "https://www.researchsleep.ca"
+          }
+        }) }] };
+      }
+    });
+
+    navigator.modelContext.registerTool({
+      name: 'get_publications',
+      description: "Get Dr. Ashley Nixon's selected publications. Filter by type: 'journal', 'conference', or 'report'. Defaults to all.",
+      inputSchema: {
+        type: 'object',
+        properties: {
+          type: { type: 'string', enum: ['all', 'journal', 'conference', 'report'], description: 'Publication type filter' }
+        }
+      },
+      async execute({ type = 'all' } = {}) {
+        const pubs = Array.from(document.querySelectorAll('.pub-item'))
+          .filter(el => type === 'all' || el.dataset.type === type)
+          .map(el => ({
+            year: el.querySelector('.pub-year')?.textContent.trim(),
+            title: el.querySelector('.pub-title')?.textContent.trim(),
+            authors: el.querySelector('.pub-authors')?.textContent.trim(),
+            venue: el.querySelector('.pub-venue')?.textContent.trim(),
+            type: el.dataset.type,
+            links: Array.from(el.querySelectorAll('.pub-link')).map(a => ({ label: a.textContent.trim(), url: a.href }))
+          }));
+        return { content: [{ type: 'text', text: JSON.stringify(pubs) }] };
+      }
+    });
+
+    navigator.modelContext.registerTool({
+      name: 'get_talks',
+      description: "Get Dr. Ashley Nixon's talks, webinars, public lectures, and media appearances.",
+      inputSchema: { type: 'object', properties: {} },
+      async execute() {
+        const talks = Array.from(document.querySelectorAll('.talk-item')).map(el => ({
+          date: el.querySelector('.talk-date')?.textContent.trim(),
+          title: el.querySelector('.talk-title')?.textContent.trim(),
+          venue: el.querySelector('.talk-venue')?.textContent.trim()
+        }));
+        return { content: [{ type: 'text', text: JSON.stringify(talks) }] };
+      }
+    });
+
+    navigator.modelContext.registerTool({
+      name: 'get_research_areas',
+      description: "Get Dr. Ashley Nixon's research areas with descriptions and topic tags.",
+      inputSchema: { type: 'object', properties: {} },
+      async execute() {
+        const areas = Array.from(document.querySelectorAll('.interest-card')).map(el => ({
+          title: el.querySelector('.interest-title')?.textContent.trim(),
+          description: el.querySelector('.interest-desc')?.textContent.trim(),
+          tags: Array.from(el.querySelectorAll('.pub-tag')).map(t => t.textContent.trim())
+        }));
+        return { content: [{ type: 'text', text: JSON.stringify(areas) }] };
+      }
+    });
+  }
+</script>
 </body>
 </html>
