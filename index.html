@@ -251,6 +251,25 @@
     overflow: hidden;
   }
 
+  img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+  }
+
+  .img-protect {
+    position: relative;
+    display: inline-block;
+  }
+
+  .img-protect::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
   .photo-placeholder {
     width: 210px;
     height: 280px;
@@ -887,7 +906,7 @@
 
 <!-- MOBILE PHOTO — shows between hero and about on small screens -->
 <div class="hero-photo-mobile">
-  <img src="images/26-1402-1608-ESmal.jpeg" class="hero-photo" alt="Dr. Ashley Nixon" loading="lazy">
+  <span class="img-protect"><img src="images/26-1402-1608-ESmal.jpeg" class="hero-photo" alt="Dr. Ashley Nixon" loading="lazy" draggable="false"></span>
 </div>
 
 <!-- ABOUT -->
@@ -921,7 +940,7 @@
       </div>
     </div> -->
     <div class="bio-photo">
-      <img src="images/26-1402-1608-ESmal.jpeg" alt="Dr. Ashley Nixon" class="bio-photo-img" loading="lazy">
+      <span class="img-protect" style="display:block;width:100%;height:100%;"><img src="images/26-1402-1608-ESmal.jpeg" alt="Dr. Ashley Nixon" class="bio-photo-img" loading="lazy" draggable="false"></span>
     </div>
   </div>
 </section>
@@ -1210,7 +1229,7 @@
   </div>
   <div class="contact-grid reveal">
     <div class="contact-photo-col">
-      <img src="images/photography.jpg" alt="Photography by Dr. Ashley Nixon" class="contact-photo-img" loading="lazy">
+      <span class="img-protect" style="display:block;"><img src="images/photography.jpg" alt="Photography by Dr. Ashley Nixon" class="contact-photo-img" loading="lazy" draggable="false"></span>
       <div class="contact-photo-caption">
         <span class="outreach-badge">Beyond the lab</span>
         <p>When I'm not in the lab, I'm chasing light with a camera. <a href="https://ashleynixonphotography.mypixieset.com" target="_blank" rel="noopener">Photography ↗</a></p>
@@ -1316,6 +1335,10 @@
 </script>
 
 <script>
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('contextmenu', e => e.preventDefault());
+  });
+
   if ('modelContext' in navigator) {
     navigator.modelContext.registerTool({
       name: 'get_researcher_profile',
